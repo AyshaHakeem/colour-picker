@@ -5,7 +5,7 @@ class Palette extends Component{
 
     render(){
 
-        const colors = this.props.palette.colors.map(x => <ColorBox color={x.color} name={x.name} />)
+        const colors = this.props.palette.colors[500].map(x => <ColorBox color={x.hex} name={x.name} />)
 
         return(
             <div className='Palette'>
