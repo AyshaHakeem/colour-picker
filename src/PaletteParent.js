@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Routes, Route, useParams } from 'react-router-dom';
 import seedColors from './seedColors';
 import { generatePalette } from './colorHelpers';
+import PaletteList from './PaletteList';
 import Palette from './Palette';
 
 class PaletteParent extends Component {
@@ -19,13 +20,9 @@ class PaletteParent extends Component {
             return <Palette palette={palette} />
         };
 
-        const Home = () => {
-            return <h1>List of different palettes</h1>
-        }
-
         return (
             <Routes>
-                <Route exact path="/" element={ <Home /> } />
+                <Route exact path="/" element={ <PaletteList palettes={seedColors} /> } />
                 <Route exact path="/palette/:id" element={<PaletteWrapper />} />
             </Routes>
         )
