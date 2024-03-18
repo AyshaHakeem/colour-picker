@@ -4,20 +4,11 @@ import './ColorBox.css'
 
 class ColorBox extends Component{
 
-    // handleClick = async () => {
-    //     let text = document.getElementById('name').innerHTML;
-    //     try {
-    //         await navigator.clipboard.writeText(text);
-    //         window.alert('Content copied to clipboard');
-    //     } catch (err) {
-    //         console.error('Failed to copy: ', err);
-    //         }
-    // }
-// backgroundColor:this.props.color
+
     render(){
-        const {name, color} = this.props
+        const {name, color, copyColour} = this.props
         return (
-            <CopyToClipboard text={name} onCopy={()=>window.alert('Color copied to clipboard')} >
+            <CopyToClipboard text={color} onCopy={()=>copyColour} >
             <div className='ColorBox' style={{ background: color }}>
                 <div className='copy-container'>
                 <div className='box-content'>
