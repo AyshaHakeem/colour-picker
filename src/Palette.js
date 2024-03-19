@@ -27,8 +27,20 @@ class Palette extends Component{
 
     render(){
         const {level, colourFormat} = this.state
-        const {palette} = this.props
-        const boxes = palette.colors[level].map(x => <ColorBox color={x[colourFormat]} name={x.name} />)
+        const {palette, showSlider, showMore} = this.props
+        let colorArray = palette.colors ? palette.colors[level] : palette
+
+        const boxes = colorArray.map(x => {
+            return (
+            <ColorBox 
+            color={x[colourFormat]} 
+            name={x.name} 
+            link={`/palette/${palette.id}/${x.id}`} 
+            colourID={x.id} 
+            showMore={showMore}
+            />
+            )
+        })
         
         return(
             <div className='Palette'>
@@ -38,6 +50,7 @@ class Palette extends Component{
                 colourFormat = {colourFormat}
                 changeLevel = {this.changeLevel}
                 changeFormat = {this.changeFormat}
+                showSlider = {showSlider}
                 />
                 
                 <div className='Palette-colors'> {/* color boxes */}

@@ -10,26 +10,29 @@ class Navbar extends Component {
 
 
   render() {
-    const { level, changeLevel, colourFormat, changeFormat } = this.props;
+    const { level, changeLevel, colourFormat, changeFormat, showSlider } = this.props;
     return (
       <header className='Navbar'>
         
         <div className='logo'>
           <a href='#'>reactcolorpicker</a>
         </div>
-
-        <div className='slider-container'>
-          <span>Level: {level}</span>
-          <div className='slider'>
-                <Slider 
-                    defaultValue = {level}
-                    min = {100}
-                    max  = {900}
-                    step = {100}   // differnce between values on the slider
-                    onChangeComplete={changeLevel}
-                />
-          </div>
-        </div>
+        
+        { showSlider && (
+          <div className='slider-container'>
+            <span>Level: {level}</span>
+            <div className='slider'>
+                  <Slider 
+                      defaultValue = {level}
+                      min = {100}
+                      max  = {900}
+                      step = {100}   // differnce between values on the slider
+                      onChangeComplete={changeLevel}
+                  />
+            </div>
+          </div> )
+        }
+        
 
         <div className='select-container'>
             <Select
