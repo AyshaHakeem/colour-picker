@@ -1,41 +1,9 @@
 import React, {Component} from 'react'
 import seedColors from './seedColors';
 import {Link, useNavigate } from 'react-router-dom'
+import styles from './styles/PaletteListStyles'
 import { withStyles } from "@material-ui/styles";
 import MiniPalette from './MiniPalette'
-
-const styles = {
-    root: {
-      backgroundColor: "#8686d3",
-      height: "100vh",
-      display: "flex",
-      alignItems: "flex-start",
-      justifyContent: "center",
-      'padding-bottom': "20px",
-      margin: '0 auto',
-    },
-    container: {
-      width: "50%",
-      display: "flex",
-      alignItems: "flex-start",
-      flexDirection: "column",
-      flexWrap: "wrap"
-    },
-    nav: {
-      width: "100%",
-      justifyContent: "space-between",
-      color: "white",
-    },
-    palettes: {
-      boxSizing: "border-box",
-      width: "100%",
-      display: "flex",
-      flexWrap: 'wrap',
-      "& a" : {
-        textDecoration: 'none'
-      }
-    }
-  };
 
 const PaletteList = ({ palettes, classes }) => {
     const navigate = useNavigate();
@@ -53,6 +21,7 @@ const PaletteList = ({ palettes, classes }) => {
           <div className={classes.container}>
               <nav className={classes.nav}>
                   <h1>Pick Your Palette</h1>
+                  <Link to='/palette/new'><b>Create Palette</b></Link>
               </nav>
               <div className={classes.palettes}>
                   {paletteList}
