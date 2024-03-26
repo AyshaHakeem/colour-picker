@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import seedColors from './seedColors';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate } from 'react-router-dom'
 import { withStyles } from "@material-ui/styles";
 import MiniPalette from './MiniPalette'
 
@@ -37,32 +37,30 @@ const styles = {
     }
   };
 
-class PaletteList extends Component{
+const PaletteList = ({ palettes, classes }) => {
+    const navigate = useNavigate();
+  
+    const goToPalette=(id)=>{
+      return navigate(`/palette/${id}`);
+    };
 
-    render(){
-
-        const { palettes, classes } = this.props ;
-        let paletteList = palettes.map( palette => { 
-            // return( <li> <Link to={`/palette/${palette.id}`}>{ palette.paletteName }</Link> </li> )
-            return <Link to={`/palette/${palette.id}`}><MiniPalette {...palette} styles={styles} /></Link>
-        })
+    const paletteList = palettes.map( palette => { 
+        return <MiniPalette {...palette} handleClick={()=>goToPalette(`${palette.id}`)} />
+    })
         
-        return (
-            <div className={classes.root}>
-                <div className={classes.container}>
-                    <nav className={classes.nav}>
-                        <h1>Pick Your Palette</h1>
-                    </nav>
-                    <div className={classes.palettes}>
-                        {paletteList}
-                    </div>
-                </div>
-            </div>
-                
-                
-          
-        )
-    }
+    return (
+      <div className={classes.root}>
+          <div className={classes.container}>
+              <nav className={classes.nav}>
+                  <h1>Pick Your Palette</h1>
+              </nav>
+              <div className={classes.palettes}>
+                  {paletteList}
+              </div>
+          </div>
+      </div>
+    )
 }
+  
 
 export default withStyles(styles)(PaletteList);
