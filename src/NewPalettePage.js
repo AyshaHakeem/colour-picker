@@ -6,20 +6,14 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
+import Toolbar from '@mui/material/Toolbar'; 
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import DemoBox from './DemoColorBox'
 
 const drawerWidth = 500;
 
@@ -72,6 +66,7 @@ export default function NewPalettePage() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [color, setColor] = React.useState("purple");
+  const [colorArray, setColorArray] = React.useState([]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -84,6 +79,18 @@ export default function NewPalettePage() {
   const changeColor = (newColor) => {
     setColor(newColor.hex);
   };
+
+  const addColorBox = (newColor) => {
+    setColorArray([...colorArray, newColor]);
+    console.log([...colorArray, newColor]);
+  }
+
+  const removeColor=(color) => {
+    let newarr = colorArray.filter(c => c!==color)
+    setColorArray(newarr)
+  }
+
+  let boxes = colorArray.map(color => <DemoBox color={color} removeColor={()=>removeColor(color)} />)
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -137,7 +144,9 @@ export default function NewPalettePage() {
           onChangeComplete={(newColor) => changeColor(newColor)}
         />
         
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" style={{ backgroundColor: color }}
+        onClick={()=>addColorBox(color)}
+        >
             ADD COLOR
         </Button>
         <Divider />
@@ -147,6 +156,10 @@ export default function NewPalettePage() {
         <DrawerHeader />
 
         <h1>New Palette Content</h1>
+        <div>
+          {boxes}
+          {/* <DemoBox color='black' /> */}
+        </div>
 
       </Main>
     </Box>
