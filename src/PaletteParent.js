@@ -4,7 +4,7 @@ import seedColors from './seedColors';
 import { generatePalette } from './colorHelpers';
 import PaletteList from './PaletteList';
 import Palette from './Palette';
-// import IndividualPalette from './IndividulaPalette'
+import NewPalette from './NewPalettePage'
 
 class PaletteParent extends Component {
 
@@ -31,7 +31,7 @@ class PaletteParent extends Component {
         return (
             <Routes>
                 <Route exact path="/" element={ <PaletteList palettes={seedColors} /> } />
-                <Route exact path="/palette/new" element={<h1>New Paltte</h1>} />
+                <Route exact path="/palette/new" element={<NewPalette />} />
                 <Route exact path="/palette/:id" element={<PaletteWrapper />} />
                 <Route exact path="/palette/:id/:colourID" element={<IndividulaWrapper />} />
             </Routes>

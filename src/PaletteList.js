@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import seedColors from './seedColors';
 import {Link, useNavigate } from 'react-router-dom'
 import styles from './styles/PaletteListStyles'
-import { withStyles } from "@material-ui/styles";
+import { withStyles } from "@mui/styles";
 import MiniPalette from './MiniPalette'
 
 const PaletteList = ({ palettes, classes }) => {
